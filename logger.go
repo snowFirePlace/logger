@@ -66,10 +66,10 @@ func (l *Log) Debug(args ...interface{}) {
 	if l.Level.Number <= 2 {
 		if len(args) >= 2 {
 			a := fmt.Sprintln(args...)
-			l.out("DEBUG", a[:len(a)-1])
+			l.out("DEBUG ", a[:len(a)-1])
 			return
 		}
-		l.out("DEBUG", fmt.Sprint(args...))
+		l.out("DEBUG ", fmt.Sprint(args...))
 	}
 }
 
@@ -88,20 +88,20 @@ func (l *Log) Info(args ...interface{}) {
 func (l *Log) Error(args ...interface{}) {
 	if len(args) >= 2 {
 		a := fmt.Sprintln(args...)
-		l.out("ERROR", a[:len(a)-1])
+		l.out("ERROR ", a[:len(a)-1])
 		return
 	}
-	l.out("ERROR", fmt.Sprint(args...))
+	l.out("ERROR ", fmt.Sprint(args...))
 }
 
 func Debug(args ...interface{}) {
 	if std.Level.Number <= 2 {
 		if len(args) >= 2 {
 			a := fmt.Sprintln(args...)
-			std.out("DEBUG", a[:len(a)-1])
+			std.out("DEBUG ", a[:len(a)-1])
 			return
 		}
-		std.out("DEBUG", fmt.Sprint(args...))
+		std.out("DEBUG ", fmt.Sprint(args...))
 	}
 }
 func Info(args ...interface{}) {
@@ -117,8 +117,8 @@ func Info(args ...interface{}) {
 func Error(args ...interface{}) {
 	if len(args) >= 2 {
 		a := fmt.Sprintln(args...)
-		std.out("ERROR", a[:len(a)-1])
+		std.out("ERROR ", a[:len(a)-1])
 		return
 	}
-	std.out("ERROR", fmt.Sprint(args...))
+	std.out("ERROR ", fmt.Sprint(args...))
 }
