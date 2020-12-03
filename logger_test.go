@@ -25,5 +25,6 @@ func Test(t *testing.T) {
 	log.Debug("123412")
 	err := errors.New("sfasfasf")
 	log.Error(err)
+	log.Fatalf("asfas %s", "klhjui")
 
 }

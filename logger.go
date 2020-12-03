@@ -94,31 +94,46 @@ func (l *Log) Error(args ...interface{}) {
 	l.out("ERROR", fmt.Sprint(args...))
 }
 
-func Debug(args ...interface{}) {
-	if std.Level.Number <= 2 {
-		if len(args) >= 2 {
-			a := fmt.Sprintln(args...)
-			std.out("DEBUG", a[:len(a)-1])
-			return
-		}
-		std.out("DEBUG", fmt.Sprint(args...))
-	}
-}
-func Info(args ...interface{}) {
-	if std.Level.Number <= 3 {
-		if len(args) >= 2 {
-			a := fmt.Sprintln(args...)
-			std.out("INFO ", a[:len(a)-1])
-			return
-		}
-		std.out("INFO", fmt.Sprint(args...))
-	}
-}
-func Error(args ...interface{}) {
+func (l *Log) Fatal(args ...interface{}) {
 	if len(args) >= 2 {
 		a := fmt.Sprintln(args...)
-		std.out("ERROR", a[:len(a)-1])
-		return
+		l.out("FATAL", a[:len(a)-1])
+	} else {
+		l.out("FATAL", fmt.Sprint(args...))
 	}
-	std.out("ERROR", fmt.Sprint(args...))
+	os.Exit(1)
 }
+
+func (l *Log) Fatalf(s string, args ...interface{}) {
+	l.out("FATAL", fmt.Sprintf(s, args...))
+	os.Exit(1)
+}
+
+// func Debug(args ...interface{}) {
+// 	if std.Level.Number <= 2 {
+// 		if len(args) >= 2 {
+// 			a := fmt.Sprintln(args...)
+// 			std.out("DEBUG", a[:len(a)-1])
+// 			return
+// 		}
+// 		std.out("DEBUG", fmt.Sprint(args...))
+// 	}
+// }
+// func Info(args ...interface{}) {
+// 	if std.Level.Number <= 3 {
+// 		if len(args) >= 2 {
+// 			a := fmt.Sprintln(args...)
+// 			std.out("INFO ", a[:len(a)-1])
+// 			return
+// 		}
+// 		std.out("INFO", fmt.Sprint(args...))
+// 	}
+// }
+// func Error(args ...interface{}) {
+// 	if len(args) >= 2 {
+// 		a := fmt.Sprintln(args...)
+// 		std.out("ERROR", a[:len(a)-1])
+// 		return
+// 	}
+// 	std.out("ERROR", fmt.Sprint(args...))
+// }
